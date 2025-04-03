@@ -1643,7 +1643,7 @@ const BioreactorHandleAnalysis = () => {
         <ul className="list-disc pl-5 space-y-2">
           <li>
             <strong>Primary Recommendation:</strong> Based on the combined metrics and user feedback, the {bestHandle(metricsData, aggregateScores)} 
-            appears to be the most promising design. It scored highest in overall satisfaction and had the most consistent performance across metrics.
+             appears to be the most promising design. It scored highest in overall satisfaction and had the most consistent performance across metrics.
           </li>
           <li>
             <strong>Design Improvements:</strong> Regardless of which handle is selected, participants consistently suggested rounder edges and improved grip security.
