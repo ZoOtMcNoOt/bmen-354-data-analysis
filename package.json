@@ -35,6 +35,9 @@
     "@types/babel__template": "^7.4.4",
     "@types/babel__traverse": "^7.20.7",
     "@types/estree": "^1.0.7",
-    "@types/json-schema": "^7.0.15"
+    "@types/json-schema": "^7.0.15",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.1"
   }
 }

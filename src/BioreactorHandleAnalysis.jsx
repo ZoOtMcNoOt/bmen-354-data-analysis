@@ -20,7 +20,7 @@ const BioreactorHandleAnalysis = () => {
     const fetchData = async () => {
       try {
         // Use standard fetch API instead of window.fs
-        const response = await fetch('/Untitled form (Responses) - Form Responses 1.csv');
+        const response = await fetch('/bioreactor_survey_responses.csv');
         const text = await response.text();
         
         const parsedData = Papa.parse(text, {
@@ -28,6 +28,21 @@ const BioreactorHandleAnalysis = () => {
           dynamicTyping: true,
           skipEmptyLines: true,
           delimitersToGuess: [',', '\t', '|', ';']
+        });
+        
+        // Clean up any fields that should be numeric but contain text
+        parsedData.data.forEach(row => {
+          // For fields that should be numeric but might contain comments
+          const attemptFields = ['Number of Attempts', 'Number of Attempts_1', 'Number of Attempts_2'];
+          attemptFields.forEach(field => {
+            if (row[field] && typeof row[field] === 'string') {
+              // Extract just the numeric part (takes the first sequence of digits)
+              const numericPart = row[field].match(/^\d+/);
+              if (numericPart) {
+                row[field] = parseInt(numericPart[0], 10);
+              }
+            }
+          });
         });
         
         setData(parsedData.data);
@@ -38,7 +53,7 @@ const BioreactorHandleAnalysis = () => {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, []);
 
