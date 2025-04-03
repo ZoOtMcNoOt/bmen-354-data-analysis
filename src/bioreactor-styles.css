@@ -11,6 +11,9 @@
   --accent: #f59e0b;
   --accent-light: #fef3c7;
   --accent-dark: #b45309;
+  --rectangle-color: #0088FE;
+  --curved-color: #00C49F;
+  --circle-color: #FFBB28;
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -23,18 +26,23 @@
   --gray-900: #111827;
 }
 
-/* Page background */
+/* Analysis container with subtle pattern background */
 .analysis-container {
   background-color: #f8fafc;
   background-image: radial-gradient(var(--gray-200) 1px, transparent 1px);
   background-size: 20px 20px;
+  min-height: 100vh;
 }
 
 /* Improved tab navigation */
 .tab-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  padding: 0.25rem;
   margin-bottom: 1.5rem;
 }
 
@@ -45,6 +53,10 @@
   color: var(--gray-600);
   padding: 0.75rem 1rem;
   border-radius: 0.25rem;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  outline: none;
 }
 
 .tab-button:hover {
@@ -84,7 +96,7 @@
 }
 
 .card-header {
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   background-color: var(--gray-50);
   border-bottom: 1px solid var(--gray-200);
   font-weight: 600;
@@ -110,6 +122,8 @@
   font-weight: 600;
   margin-bottom: 0.75rem;
   font-size: 1.125rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--gray-200);
 }
 
 /* Enhanced table styling */
@@ -176,11 +190,11 @@
 
 /* Customized chart tooltips */
 .custom-tooltip {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   border: 1px solid var(--gray-300);
   border-radius: 0.25rem;
-  padding: 0.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .tooltip-label {
@@ -223,13 +237,13 @@
 }
 
 /* Handle type colors */
-.rectangle-color { color: #0088FE; }
-.curved-color { color: #00C49F; }
-.circle-color { color: #FFBB28; }
+.rectangle-color { color: var(--rectangle-color); }
+.curved-color { color: var(--curved-color); }
+.circle-color { color: var(--circle-color); }
 
-.bg-rectangle-color { background-color: #0088FE; }
-.bg-curved-color { background-color: #00C49F; }
-.bg-circle-color { background-color: #FFBB28; }
+.bg-rectangle-color { background-color: var(--rectangle-color); }
+.bg-curved-color { background-color: var(--curved-color); }
+.bg-circle-color { background-color: var(--circle-color); }
 
 /* Insights and key findings */
 .insight-card {
@@ -263,6 +277,53 @@
   to { transform: rotate(360deg); }
 }
 
+/* Enhanced tooltip design */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid var(--gray-300) !important;
+  border-radius: 0.375rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Bar chart hover effects */
+.recharts-bar-rectangle:hover {
+  filter: brightness(0.9);
+  transition: filter 0.2s;
+}
+
+/* Pie chart styles */
+.recharts-pie-label-text {
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+/* Print styles for reports */
+@media print {
+  .analysis-container {
+    background: none;
+    padding: 0;
+  }
+  
+  .tab-navigation {
+    display: none;
+  }
+  
+  .analysis-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+  }
+  
+  .chart-container {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
 /* Mobile optimizations */
 @media (max-width: 640px) {
   .tab-button {
@@ -276,5 +337,67 @@
   
   .subsection-title {
     font-size: 1rem;
+  }
+  
+  .card-header {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .analysis-card {
+    margin-bottom: 1rem;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Accessibility improvements */
+.tab-button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.tab-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Animation for loading and transitions */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary: #0000ff;
+    --primary-light: #ccccff;
+    --primary-dark: #0000cc;
+    --secondary: #008000;
+    --secondary-light: #ccffcc;
+    --secondary-dark: #006600;
+    --accent: #cc6600;
+    --accent-light: #ffcc99;
+    --accent-dark: #994c00;
+  }
+  
+  .analysis-card {
+    border: 2px solid var(--gray-800);
+  }
+  
+  .data-table th {
+    background-color: var(--gray-800);
+    color: white;
+  }
+  
+  .data-table td {
+    border: 1px solid var(--gray-800);
   }
 }
