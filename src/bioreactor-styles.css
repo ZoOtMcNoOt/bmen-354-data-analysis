@@ -1,0 +1,280 @@
+/* Enhanced styling for bioreactor handle analysis */
+
+/* Color theme */
+:root {
+  --primary: #3b82f6;
+  --primary-light: #dbeafe;
+  --primary-dark: #1d4ed8;
+  --secondary: #10b981;
+  --secondary-light: #d1fae5;
+  --secondary-dark: #047857;
+  --accent: #f59e0b;
+  --accent-light: #fef3c7;
+  --accent-dark: #b45309;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
+/* Page background */
+.analysis-container {
+  background-color: #f8fafc;
+  background-image: radial-gradient(var(--gray-200) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Improved tab navigation */
+.tab-navigation {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.tab-button {
+  position: relative;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: var(--gray-600);
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.tab-button:hover {
+  background-color: var(--gray-50);
+  color: var(--gray-800);
+}
+
+.tab-button.active {
+  color: var(--primary);
+  font-weight: 600;
+  background-color: var(--primary-light);
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+/* Card styling */
+.analysis-card {
+  border-radius: 0.5rem;
+  border: 1px solid var(--gray-200);
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.analysis-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+  padding: 1rem;
+  background-color: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* Section headers */
+.section-title {
+  color: var(--gray-800);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  border-left: 4px solid var(--primary);
+  padding-left: 0.75rem;
+}
+
+.subsection-title {
+  color: var(--gray-700);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+}
+
+/* Enhanced table styling */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+}
+
+.data-table thead {
+  background-color: var(--gray-50);
+}
+
+.data-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-700);
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: var(--gray-50);
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--primary-light);
+}
+
+/* Statistical significance highlights */
+.stat-significant {
+  background-color: var(--secondary-light);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.375rem;
+  font-weight: 500;
+  color: var(--secondary-dark);
+}
+
+.stat-large-effect {
+  background-color: var(--secondary-light);
+  color: var(--secondary-dark);
+  font-weight: 600;
+}
+
+.stat-medium-effect {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 500;
+}
+
+.stat-small-effect {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+}
+
+/* Customized chart tooltips */
+.custom-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--gray-300);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--gray-800);
+}
+
+.tooltip-value {
+  color: var(--gray-700);
+}
+
+/* Responsive charts */
+.chart-container {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding-bottom: 70%; /* Aspect ratio */
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .chart-container {
+    padding-bottom: 60%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .chart-container {
+    padding-bottom: 50%;
+  }
+}
+
+.chart-container > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Handle type colors */
+.rectangle-color { color: #0088FE; }
+.curved-color { color: #00C49F; }
+.circle-color { color: #FFBB28; }
+
+.bg-rectangle-color { background-color: #0088FE; }
+.bg-curved-color { background-color: #00C49F; }
+.bg-circle-color { background-color: #FFBB28; }
+
+/* Insights and key findings */
+.insight-card {
+  background-color: white;
+  border-left: 4px solid var(--primary);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.insight-title {
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .tab-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .section-title {
+    font-size: 1.125rem;
+  }
+  
+  .subsection-title {
+    font-size: 1rem;
+  }
+}
