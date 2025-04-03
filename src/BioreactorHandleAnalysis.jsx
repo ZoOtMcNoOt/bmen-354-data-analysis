@@ -3,6 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import _ from 'lodash';
 import * as math from 'mathjs';
 import Papa from 'papaparse';
+import './charts.css';
 
 const BioreactorHandleAnalysis = () => {
   const [data, setData] = useState([]);
@@ -748,7 +749,7 @@ const BioreactorHandleAnalysis = () => {
           
           <h2 className="text-xl font-semibold mb-3">Handle Preference Rankings</h2>
           <div className="h-80 mb-6">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height={300}>
               <BarChart
                 data={rankingData}
                 margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
@@ -796,7 +797,7 @@ const BioreactorHandleAnalysis = () => {
           
           {aggregateScores && (
             <div className="h-64 mb-6">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height={300}>
                 <BarChart
                   data={[
                     {name: 'Rectangle Handle', score: aggregateScores.average['Rectangle Handle'], color: COLORS[0]},
@@ -868,7 +869,7 @@ const BioreactorHandleAnalysis = () => {
               <div key={index} className="border rounded shadow p-4">
                 <h3 className="text-lg font-semibold mb-2">{metricData[0].metric}</h3>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width="100%" height={300}>
                     <ScatterChart
                       margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                     >
@@ -1193,7 +1194,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Positioning Accuracy</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={metricsData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -1209,7 +1210,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Number of Attempts</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={metricsData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -1225,7 +1226,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Comfort</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={metricsData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -1240,7 +1241,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Grip Security</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={metricsData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -1255,7 +1256,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Ease of Use</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={metricsData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -1270,7 +1271,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Intuitiveness</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={metricsData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -1285,7 +1286,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow col-span-1 md:col-span-2">
               <h3 className="text-lg font-semibold mb-2">Overall Satisfaction</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={metricsData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
@@ -1306,7 +1307,7 @@ const BioreactorHandleAnalysis = () => {
                   <div key={index}>
                     <h4 className="font-medium mb-2">{metricData[0].metric}</h4>
                     <div className="h-56">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <ResponsiveContainer width="100%" height={300}>
                         <BarChart
                           data={metricData}
                           margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
@@ -1347,7 +1348,7 @@ const BioreactorHandleAnalysis = () => {
               <div key={category.category} className="border p-4 rounded shadow">
                 <h3 className="text-lg font-semibold mb-2">{category.category}</h3>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={[
                       {name: 'Rectangle Handle', votes: category['Rectangle Handle'], color: COLORS[0]},
                       {name: 'Curved Handle', votes: category['Curved Handle'], color: COLORS[1]},
@@ -1502,7 +1503,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Gender</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
                     <Pie
                       data={Object.entries(demographics.genderCount).map(([key, value]) => ({ name: key, value }))}
@@ -1526,7 +1527,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Hand Dominance</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
                     <Pie
                       data={Object.entries(demographics.handednessCount).map(([key, value]) => ({ name: key, value }))}
@@ -1550,7 +1551,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Experience Level</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart
                     data={Object.entries(demographics.experienceCount).map(([key, value]) => ({ name: key, count: value }))}
                     layout="vertical"
@@ -1569,7 +1570,7 @@ const BioreactorHandleAnalysis = () => {
             <div className="border p-4 rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Height Distribution</h3>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart
                     data={Object.entries(demographics.heightCount).map(([key, value]) => ({ name: key, count: value }))}
                     layout="vertical"

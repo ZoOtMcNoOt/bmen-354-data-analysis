@@ -1,0 +1,16 @@
+/* Minimum required styles for charts to display */
+.recharts-wrapper {
+  min-height: 300px;
+}
+
+.h-64 {
+  height: 16rem;
+}
+
+.h-80 {
+  height: 20rem;
+}
+
+.h-96 {
+  height: 24rem; 
+}
