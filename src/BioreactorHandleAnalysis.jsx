@@ -4,27 +4,8 @@ import _ from 'lodash';
 import * as math from 'mathjs';
 import Papa from 'papaparse';
 import './charts.css';
-import './bioreactor-styles.css'; // Import our new styles
-
-// Custom tooltip component for charts
-const CustomTooltip = ({ active, payload, label, formatter }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="custom-tooltip">
-        <p className="tooltip-label">{label}</p>
-        {payload.map((entry, index) => (
-          <p key={index} className="tooltip-value" style={{ color: entry.color }}>
-            {entry.name}: {formatter ? formatter(entry.value) : entry.value}
-          </p>
-        ))}
-      </div>
-    );
-  }
-  return null;
-};
 
 const BioreactorHandleAnalysis = () => {
-  // Existing state declarations remain the same
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,8 +16,6 @@ const BioreactorHandleAnalysis = () => {
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
   const handleTypes = ['Rectangle Handle', 'Curved Handle', 'Circle Undergrip Handle'];
-  const handleClasses = ['rectangle-color', 'curved-color', 'circle-color'];
-  const handleBgClasses = ['bg-rectangle-color', 'bg-curved-color', 'bg-circle-color'];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -700,7 +679,7 @@ const BioreactorHandleAnalysis = () => {
   if (loading) return (
     <div className="p-4 flex items-center justify-center h-64">
       <div className="text-center">
-        <div className="loading-spinner mx-auto mb-4"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
         <p>Loading data and performing statistical analysis...</p>
       </div>
     </div>
@@ -718,45 +697,43 @@ const BioreactorHandleAnalysis = () => {
   const confidenceData = prepareConfidenceData();
 
   return (
-    <div className="p-4 max-w-7xl mx-auto analysis-container">
-      <header className="mb-6 p-6 bg-white rounded-lg shadow-sm">
-        <h1 className="text-3xl font-bold mb-2 text-gray-800">Bioreactor Handle Preference Analysis</h1>
-        <p className="text-gray-600">Analysis of {data.length} participant responses comparing three handle designs: Rectangle, Curved, and Circle Undergrip.</p>
-      </header>
+    <div className="p-4 max-w-7xl mx-auto">
+      <h1 className="text-3xl font-bold mb-2">Bioreactor Handle Preference Analysis</h1>
+      <p className="mb-6 text-gray-600">Analysis of {data.length} participant responses comparing three handle designs: Rectangle, Curved, and Circle Undergrip.</p>
       
-      <div className="tab-navigation flex mb-6 overflow-x-auto">
+      <div className="flex mb-4 overflow-x-auto border-b">
         <button 
-          className={`tab-button ${tab === 'overview' ? 'active' : ''}`}
+          className={`px-4 py-2 whitespace-nowrap ${tab === 'overview' ? 'bg-blue-100 border-b-2 border-blue-500' : ''}`}
           onClick={() => setTab('overview')}>
           Overview
         </button>
         <button 
-          className={`tab-button ${tab === 'insights' ? 'active' : ''}`}
+          className={`px-4 py-2 whitespace-nowrap ${tab === 'insights' ? 'bg-blue-100 border-b-2 border-blue-500' : ''}`}
           onClick={() => setTab('insights')}>
           Key Insights
         </button>
         <button 
-          className={`tab-button ${tab === 'stats' ? 'active' : ''}`}
+          className={`px-4 py-2 whitespace-nowrap ${tab === 'stats' ? 'bg-blue-100 border-b-2 border-blue-500' : ''}`}
           onClick={() => setTab('stats')}>
           Statistical Analysis
         </button>
         <button 
-          className={`tab-button ${tab === 'metrics' ? 'active' : ''}`}
+          className={`px-4 py-2 whitespace-nowrap ${tab === 'metrics' ? 'bg-blue-100 border-b-2 border-blue-500' : ''}`}
           onClick={() => setTab('metrics')}>
           Performance Metrics
         </button>
         <button 
-          className={`tab-button ${tab === 'attributes' ? 'active' : ''}`}
+          className={`px-4 py-2 whitespace-nowrap ${tab === 'attributes' ? 'bg-blue-100 border-b-2 border-blue-500' : ''}`}
           onClick={() => setTab('attributes')}>
           Best Attributes
         </button>
         <button 
-          className={`tab-button ${tab === 'feedback' ? 'active' : ''}`}
+          className={`px-4 py-2 whitespace-nowrap ${tab === 'feedback' ? 'bg-blue-100 border-b-2 border-blue-500' : ''}`}
           onClick={() => setTab('feedback')}>
           Qualitative Feedback
         </button>
         <button 
-          className={`tab-button ${tab === 'demographics' ? 'active' : ''}`}
+          className={`px-4 py-2 whitespace-nowrap ${tab === 'demographics' ? 'bg-blue-100 border-b-2 border-blue-500' : ''}`}
           onClick={() => setTab('demographics')}>
           Demographics
         </button>
@@ -764,35 +741,29 @@ const BioreactorHandleAnalysis = () => {
 
       {tab === 'overview' && (
         <div>
-          <div className="analysis-card mb-6">
-            <div className="card-header">Study Overview</div>
-            <div className="card-body">
-              <p className="mb-2">This analysis examines user preferences for three different bioreactor handle designs, based on data from {data.length} participants.</p>
-              <p className="mb-0"><span className="font-semibold">Note:</span> The small sample size (n={data.length}) means results should be interpreted with caution. Statistical significance may be limited.</p>
-            </div>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <h2 className="text-xl font-semibold mb-2">Study Overview</h2>
+            <p className="mb-2">This analysis examines user preferences for three different bioreactor handle designs, based on data from {data.length} participants.</p>
+            <p className="mb-0"><span className="font-semibold">Note:</span> The small sample size (n={data.length}) means results should be interpreted with caution. Statistical significance may be limited.</p>
           </div>
           
-          <h2 className="section-title">Handle Preference Rankings</h2>
-          <div className="analysis-card mb-6">
-            <div className="card-body">
-              <div className="chart-container" style={{paddingBottom: '350px'}}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={rankingData}
-                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-                    <XAxis dataKey="name" tick={{fill: '#4b5563'}} />
-                    <YAxis tick={{fill: '#4b5563'}} />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Legend />
-                    <Bar dataKey="firstChoice" name="Ranked 1st" fill="#0088FE" radius={[4, 4, 0, 0]} animationDuration={1500} />
-                    <Bar dataKey="secondChoice" name="Ranked 2nd" fill="#00C49F" radius={[4, 4, 0, 0]} animationDuration={1500} />
-                    <Bar dataKey="thirdChoice" name="Ranked 3rd" fill="#FFBB28" radius={[4, 4, 0, 0]} animationDuration={1500} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
+          <h2 className="text-xl font-semibold mb-3">Handle Preference Rankings</h2>
+          <div className="h-80 mb-6">
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={rankingData}
+                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="firstChoice" name="Ranked 1st" fill="#0088FE" />
+                <Bar dataKey="secondChoice" name="Ranked 2nd" fill="#00C49F" />
+                <Bar dataKey="thirdChoice" name="Ranked 3rd" fill="#FFBB28" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -808,30 +779,59 @@ const BioreactorHandleAnalysis = () => {
               const ci = calculateCI(avgRank, stdDev, ranks.length);
               
               return (
-                <div key={handle} className="analysis-card">
-                  <div className={`card-header ${handleBgClasses[index]} bg-opacity-10`}>
-                    <h3 className={`text-lg font-semibold ${handleClasses[index]}`}>{handle}</h3>
-                  </div>
-                  <div className="card-body">
-                    <div className="text-3xl font-bold my-2">{avgRank.toFixed(2)}</div>
-                    <div className="text-sm text-gray-600">Average Rank (lower is better)</div>
-                    <div className="mt-1 text-xs text-gray-500">95% CI: [{ci[0].toFixed(2)}, {ci[1].toFixed(2)}]</div>
-                    <div className="mt-2 font-medium">{percentFirst}% ranked it first choice</div>
-                  </div>
+                <div key={handle} className="border p-4 rounded shadow">
+                  <h3 className="text-lg font-semibold" style={{color: COLORS[index]}}>{handle}</h3>
+                  <div className="text-3xl font-bold my-2">{avgRank.toFixed(2)}</div>
+                  <div className="text-sm text-gray-600">Average Rank (lower is better)</div>
+                  <div className="mt-1 text-xs text-gray-500">95% CI: [{ci[0].toFixed(2)}, {ci[1].toFixed(2)}]</div>
+                  <div className="mt-2">{percentFirst}% ranked it first choice</div>
                 </div>
               );
             })}
           </div>
 
-          <h2 className="section-title">Aggregate Performance Score</h2>
+          <h2 className="text-xl font-semibold mb-3">Aggregate Performance Score</h2>
           <p className="mb-3 text-sm text-gray-600">
             Combined score based on all metrics (Positioning, Attempts, Comfort, Security, Ease, Intuitiveness, Satisfaction)
           </p>
           
           {aggregateScores && (
-            <div className="analysis-card mb-6">
-              <div className="card-body">
-                <div className="chart-container" style={{paddingBottom: '350px'}}>
+            <div className="h-64 mb-6">
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart
+                  data={[
+                    {name: 'Rectangle Handle', score: aggregateScores.average['Rectangle Handle'], color: COLORS[0]},
+                    {name: 'Curved Handle', score: aggregateScores.average['Curved Handle'], color: COLORS[1]},
+                    {name: 'Circle Undergrip Handle', score: aggregateScores.average['Circle Undergrip Handle'], color: COLORS[2]}
+                  ]}
+                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis domain={[0, 5]} />
+                  <Tooltip />
+                  <Bar dataKey="score" name="Aggregate Score" fill={(d) => d.color} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+
+          <h2 className="text-xl font-semibold mb-3">Key Findings</h2>
+          <ul className="list-disc pl-5 mb-6 space-y-2">
+            <li>The {_.minBy(metricsData, m => _.meanBy(data, `Handle Preference Ranking  [${m.name}]`)).name} received the best average ranking.</li>
+            <li>The {_.maxBy(metricsData, 'Comfort').name} scored highest for comfort ({_.maxBy(metricsData, 'Comfort').Comfort.toFixed(1)}/5).</li>
+            <li>The {_.maxBy(metricsData, 'Satisfaction').name} had the highest overall satisfaction ({_.maxBy(metricsData, 'Satisfaction').Satisfaction.toFixed(1)}/5).</li>
+            <li>The {_.minBy(metricsData, 'Attempts').name} required the fewest attempts on average ({_.minBy(metricsData, 'Attempts').Attempts.toFixed(1)}).</li>
+            
+            {significantDifferences.length > 0 && (
+              <li className="font-semibold">
+                Statistically notable differences were found in {significantDifferences.map(d => d.metricName).slice(0, 2).join(' and ')} metrics.
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
+
       {tab === 'insights' && (
         <div>
           <h2 className="text-xl font-semibold mb-4">Key Insights from Statistical Analysis</h2>
