@@ -20,7 +20,7 @@ const BioreactorHandleAnalysis = () => {
     const fetchData = async () => {
       try {
         // Use standard fetch API instead of window.fs
-        const response = await fetch('/Untitled form Responses  Form Responses 1.csv');
+        const response = await fetch('/Untitled form (Responses) - Form Responses 1.csv');
         const text = await response.text();
         
         const parsedData = Papa.parse(text, {
