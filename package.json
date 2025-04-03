@@ -1,0 +1,40 @@
+{
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "lodash": "^4.17.21",
+    "mathjs": "^14.4.0",
+    "papaparse": "^5.5.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^2.15.1",
+    "vite": "^6.2.4"
+  },
+  "name": "bmen-354-data-analysis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZoOtMcNoOt/bmen-354-data-analysis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZoOtMcNoOt/bmen-354-data-analysis/issues"
+  },
+  "homepage": "https://github.com/ZoOtMcNoOt/bmen-354-data-analysis#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.6.8",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.20.7",
+    "@types/estree": "^1.0.7",
+    "@types/json-schema": "^7.0.15"
+  }
+}
